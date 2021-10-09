@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepChecker", "DepChecker\DepChecker.csproj", "{0A0F3E77-3021-43F0-95DA-B3866B7A5E48}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A0F3E77-3021-43F0-95DA-B3866B7A5E48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A0F3E77-3021-43F0-95DA-B3866B7A5E48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A0F3E77-3021-43F0-95DA-B3866B7A5E48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A0F3E77-3021-43F0-95DA-B3866B7A5E48}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

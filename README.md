@@ -3,6 +3,17 @@
 A command line tool for viewing assembly references and problems.
 DepChecker is compatible with `.Net Core` allowing it to be used in environments other than windows.
 
+## Dependencies
+
+This project was build with .NET Core 5.
+
+## Build
+
+From the cloned directory:
+```
+dotnet build --configuration Release
+```
+
 ## Usage
 
 Run DepChecker from the command line and provide it a path of assemblies to examine.

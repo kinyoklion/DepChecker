@@ -3,6 +3,8 @@ namespace DepChecker
     enum Source
     {
         File,
-        Runtime
+        Runtime,
+        NotFound,
+        IncorrectVersion
     }
 }

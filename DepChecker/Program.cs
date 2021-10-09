@@ -32,6 +32,12 @@ namespace DepChecker
                     }
                     catch (Exception)
                     {
+                        summary.Dependencies.Add(new AssemblySummary
+                        {
+                            AssemblyName = assemblyName,
+                            Dependencies = new List<AssemblySummary>(), Exists = false,
+                            Source = Source.NotFound
+                        });
                         AddIssue(loadedAssembly, assemblyName);
                     }
                 }
@@ -59,7 +65,8 @@ namespace DepChecker
                     var dependentAssemblySummary = new AssemblySummary
                     {
                         AssemblyName = assemblyName,
-                        Dependencies = new List<AssemblySummary>(), Exists = false
+                        Dependencies = new List<AssemblySummary>(), Exists = false,
+                        Source = Source.NotFound
                     };
                     AddIssue(loadedAssembly, assemblyName);
                     summary.Dependencies.Add(dependentAssemblySummary);
@@ -107,7 +114,7 @@ namespace DepChecker
                 AssemblyName = assemblyName,
                 Dependencies = new List<AssemblySummary>(),
                 Exists = versionMatches,
-                Source = source
+                Source = versionMatches ? source : Source.IncorrectVersion
             };
             summary.Dependencies.Add(dependentAssemblySummary);
             return dependentAssemblySummary;
@@ -129,7 +136,7 @@ namespace DepChecker
                 return 1;
             }
 
-            var path = args[0];
+            var path = Path.GetFullPath(args[0]);
             if (!Directory.Exists(path))
             {
                 Console.WriteLine("Path not valid. Please verify that the path is a directory and it exists.");

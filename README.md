@@ -36,7 +36,7 @@ If the dependency tree has issues, then those will be logged in the tree:
 # If the correct version could not be found.
 [System.Runtime.CompilerServices.Unsafe 4.0.4.1] <- IncorrectVersion
 # If the assembly could not be found at all.
-[System.Runtime.CompilerServices.Unsafe 4.0.4.1] <- NotFOund
+[System.Runtime.CompilerServices.Unsafe 4.0.4.1] <- NotFound
 ```
 
 If your project has dependency issues, then you will get additional output:

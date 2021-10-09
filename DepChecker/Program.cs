@@ -5,6 +5,18 @@ using System.IO;
 
 namespace DepChecker
 {
+    struct AnsiColor
+    {
+        public static string Black = "\u001b[30m";
+        public static string Red = "\u001b[31m";
+        public static string Green = "\u001b[32m";
+        public static string Yellow = "\u001b[33m";
+        public static string Blue = "\u001b[34m";
+        public static string Magenta = "\u001b[35m";
+        public static string Cyan = "\u001b[36m";
+        public static string White = "\u001b[37m";
+        public static string Reset = "\u001b[0m";
+    }
     class Program
     {
         private static readonly List<AssemblySummary> DependencyTree = new();
@@ -59,7 +71,7 @@ namespace DepChecker
                     }
                     catch (Exception)
                     {
-                        WriteLineColor(ConsoleColor.Red, $"Failed to load {assemblyName.FullName}");
+                        WriteLineColor(AnsiColor.Red, $"Failed to load {assemblyName.FullName}");
                     }
 
                     var dependentAssemblySummary = new AssemblySummary
@@ -120,12 +132,9 @@ namespace DepChecker
             return dependentAssemblySummary;
         }
 
-        static void WriteLineColor(ConsoleColor color, string text)
+        static void WriteLineColor(string color, string text)
         {
-            var consoleColor = Console.ForegroundColor;
-            Console.ForegroundColor = color;
-            Console.WriteLine(text);
-            Console.ForegroundColor = consoleColor;
+            Console.WriteLine($"{color}{text}{AnsiColor.Reset}");
         }
 
         static int Main(string[] args)
@@ -184,7 +193,7 @@ namespace DepChecker
             foreach (var summary in summaries)
             {
                 var summaryString = summary.ToString();
-                WriteLineColor(summary.Exists ? ConsoleColor.Green : ConsoleColor.Red,
+                WriteLineColor(summary.Exists ? AnsiColor.Green : AnsiColor.Red,
                     summary.ToString().PadLeft(depth * 4 + summaryString.Length));
                 PrintDependencies(summary.Dependencies, depth + 1);
             }
@@ -194,7 +203,7 @@ namespace DepChecker
         {
             foreach (var (key, value) in Issues)
             {
-                WriteLineColor(ConsoleColor.Red, $"Could not locate {key}:");
+                WriteLineColor(AnsiColor.Red, $"Could not locate {key}:");
                 Console.WriteLine("Expected by:");
                 foreach (var dependent in value)
                 {
@@ -207,7 +216,7 @@ namespace DepChecker
         {
             foreach (var (key, value) in Redirects)
             {
-                WriteLineColor(ConsoleColor.Yellow, $"Assembly Loaded Via Redirect {key}:");
+                WriteLineColor(AnsiColor.Yellow, $"Assembly Loaded Via Redirect {key}:");
                 Console.WriteLine("Expected by:");
                 foreach (var dependent in value)
                 {
